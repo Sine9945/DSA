@@ -11,18 +11,13 @@ public:
             int currEnd = intervals[i][1];
             if (currStart <= end){
                 end = max(end, currEnd);
-                if (i == n - 1){
-                    ans.push_back({start, end});
-                }
             } else {
                 ans.push_back({start, end});
                 start = currStart;
                 end = currEnd;
-                if (i == n - 1){
-                    ans.push_back({start, end});
-                }
             }
         }
+    ans.push_back({start, end});
     return ans;
     }
 };
