@@ -9,27 +9,20 @@ public:
         int ans = 0;
         int i = 0;
         while (i < n){
-            if (i < n-1 && s[i] == 'I' && s[i+1] == 'V'){
-                ans += 4;
-                i+=2;
-            } else if (i < n-1 && s[i] == 'I' && s[i+1] == 'X'){
-                ans += 9;
-                i+=2;
-            } else if (i < n-1 && s[i] == 'X' && s[i+1] == 'L'){
-                ans += 40;
-                i+=2;
-            } else if (i < n-1 && s[i] == 'X' && s[i+1] == 'C'){
-                ans += 90;
-                i+=2;
-            } else if (i < n-1 && s[i] == 'C' && s[i+1] == 'D'){
-                ans += 400;
-                i+=2;
-            } else if (i < n-1 && s[i] == 'C' && s[i+1] == 'M'){
-                ans += 900;
-                i+=2;
-            } else {
-                auto it = roman.find(s[i]);
-                ans += it->second;
+            auto it1 = roman.find(s[i]);
+            if (i < n-1)
+            {
+                auto it2 = roman.find(s[i+1]);
+                if (it1->second < it2->second){
+                    ans += it2->second - it1->second;
+                    i += 2;
+                } else {
+                    ans += it1->second;
+                    i++;
+                }
+            } 
+            else {
+                ans += it1->second;
                 i++;
             }
         }
